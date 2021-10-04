@@ -1,0 +1,14 @@
+{
+  "type": "sqlite",
+  "database": "src/database/migrations/database.sqlite",
+  "username":"payment",
+  "password": "payment",
+  "host": "localhost",
+  "port": "3306",
+
+  "entities": ["src/entities/*.ts"],
+  "cli": {
+    "migrationsDir": "src/database/migrations",
+    "entitiesDir": "src/entities"
+  }
+}
