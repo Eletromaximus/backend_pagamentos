@@ -1,4 +1,4 @@
-import { getCustomRepository } from "typeorm"
+import { getCustomRepository } from 'typeorm'
 import { UsersRepositories } from '../repositories/UserRepositories'
 import { CustomErrors } from '../utils/CustomErrors'
 import { hash } from 'bcryptjs'
@@ -13,7 +13,7 @@ class CreateUserService {
   async execute ({ name, email, password }: IUserRequest) {
     const usersRepositories = getCustomRepository(UsersRepositories)
 
-    if(!email) {
+    if (!email) {
       throw new CustomErrors({ status: 422, message: 'Email incorrect' })
     }
 
@@ -21,7 +21,7 @@ class CreateUserService {
       email
     })
 
-    if(userAlreadyExist) {
+    if (userAlreadyExist) {
       throw new CustomErrors({ status: 409, message: 'User already exist' })
     }
 
