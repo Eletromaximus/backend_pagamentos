@@ -1,11 +1,7 @@
 {
   "type": "sqlite",
-  "database": "src/database/migrations/database.sqlite",
-  "username":"payment",
-  "password": "payment",
-  "host": "localhost",
-  "port": "3306",
-
+  "database": "src/database/database.sqlite",
+  "migrations": ["src/database/migrations/*.ts"],
   "entities": ["src/entities/*.ts"],
   "cli": {
     "migrationsDir": "src/database/migrations",

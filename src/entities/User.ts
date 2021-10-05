@@ -25,7 +25,7 @@ class User {
   @Exclude()
   @Column()
   password: string;
-  
+
   @CreateDateColumn()
   created_at: Date;
 
