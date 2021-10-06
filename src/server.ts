@@ -1,15 +1,16 @@
+import 'reflect-metadata'
 import express, { NextFunction, Request, Response } from 'express'
 import cors from 'cors'
-import 'reflect-metadata'
 import { router } from './routes'
-
-import './database'
 import { CustomErrors } from './utils/CustomErrors'
 
-const app = express()
+import './database'
 
+const app = express()
 app.use(cors())
+
 app.use(express.json())
+
 app.use(router)
 
 app.use(
