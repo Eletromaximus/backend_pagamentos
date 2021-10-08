@@ -1,7 +1,7 @@
 import { getCustomRepository } from 'typeorm'
 import { UsersRepositories } from '../repositories/UsersRepositories'
-import { CustomErrors } from '../utils/CustomErrors'
 import { hash } from 'bcryptjs'
+import { ValidationError } from 'yup'
 
 interface IUserRequest {
   name: string,
@@ -15,7 +15,7 @@ class CreateUserService {
     const usersRepositories = getCustomRepository(UsersRepositories)
 
     if (!email) {
-      throw new CustomErrors({ status: 422, message: 'Email incorrect' })
+      throw new ValidationError('Email', 'Email não válido')
     }
 
     const userAlreadyExist = await usersRepositories.findOne({
@@ -23,9 +23,12 @@ class CreateUserService {
     })
 
     if (userAlreadyExist) {
-      throw new CustomErrors({ status: 409, message: 'User already exist' })
+      throw new ValidationError('Email', 'Usuário já está registrado')
     }
 
+    if (password === '') {
+      throw new ValidationError('Senha', 'Senha inválida')
+    }
     const passwordHash = await hash(password, 8)
 
     const user = usersRepositories.create({

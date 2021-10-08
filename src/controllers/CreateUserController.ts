@@ -10,6 +10,12 @@ export class CreateUserController {
     const user = await createUserService.execute({
       name, email, admin, password
     })
+      .then(() => {
+        response.status(200)
+      })
+      .catch(() => {
+        response.status(400)
+      })
 
     return response.json(user)
   }
