@@ -14,7 +14,7 @@ export class CreateUserController {
         response.status(200)
       })
       .catch(() => {
-        response.status(400)
+        response.status(422)
       })
 
     return response.json(user)
