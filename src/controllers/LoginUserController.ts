@@ -12,16 +12,14 @@ export class LoginUserController {
       password
     })
 
-    console.log(users)
     if (users === false) {
-      response.json({
-        status: 422,
+      return response.json({
         mensagem: 'Falha no cadastro'
-      })
+      }).status(422)
     } else {
-      response.json({
-        status: 200
-      })
+      return response.json({
+        mensagem: 'tudo certo'
+      }).status(200)
     }
   }
 }

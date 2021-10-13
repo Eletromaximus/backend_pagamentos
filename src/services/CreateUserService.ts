@@ -28,8 +28,8 @@ class CreateUserService {
     if (password === '') {
       throw new Error('Senha inválida')
     }
-    console.log(process.env.SALT_NUMBER)
-    const passwordHash = await hash(password, 'fBp2hT6b')
+
+    const passwordHash = await hash(password, 8)
 
     const user = usersRepositories.create({
       name, email, admin, password: passwordHash
