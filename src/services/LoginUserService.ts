@@ -14,8 +14,7 @@ export class LoginUserService {
       where: { email: email }
     })
       .then((result) => {
-        const comp = bcrypt.compare(password, result.password)
-        return comp
+        return bcrypt.compare(password, result.password)
       })
       .catch(() => {
         return false
